@@ -63,6 +63,7 @@ namespace Character
     std::string Format(const char *c, const char *args...);
     bool ArrayStartsWith(const char *array, const char *start);
     bool VectorStartsWith(const std::vector<char> &array, const char *start);
+    bool VectorEndsWith(const std::vector<char> &array, const char *end);
 }
 
 namespace vec3

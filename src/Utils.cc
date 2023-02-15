@@ -64,6 +64,20 @@ bool Character::ArrayStartsWith(const char *array, const char *start)
     return true;
 }
 
+
+bool Character::VectorEndsWith(const std::vector<char> &array, const char *end)
+{
+    if(array.size() < strlen(end))
+        return false;
+    int len = strlen(end);
+    for (int i = 0; i < len; ++i)
+    {
+        if (array[array.size() - i - 1] != end[len - i - 1])
+            return false;
+    }
+    return true;
+}
+
 bool Character::VectorStartsWith(const std::vector<char> &array, const char *start)
 {
     if(array.size() < strlen(start))

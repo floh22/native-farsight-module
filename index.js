@@ -7,7 +7,7 @@ var connected = false;
 var autoImportChampions = true;
 var autoImportOffsets = true;
 var gameVersion = [0,0];
-var offsetRepository = "https://raw.githubusercontent.com/floh22/LeagueBroadcast/v2/Offsets/";
+var offsetRepository = "https://api.github.com/repos/floh22/native-farsight-module/contents/offsets?ref=main";
 
 
 
@@ -34,8 +34,77 @@ async function importChampionsFromCDragon() {
 }
 
 
+async function getLatestPatchFileUrl() {
+    var response = await fetch(offsetRepository);
+    var data = await response.json();
+    
+    var latestPatchFile = null;
+    var latestPatchVersion = -1;
+    for(var i = 0; i < data.length; i++) {
+        var file = data[i];
+        var offsetVersion = file.name.replace(/[^\d.-]/g, '');
+        if(offsetVersion.startsWith(gameVersion[0] + "." + gameVersion[1])) {
+            var patchVersion = offsetVersion.split(".").slice(-1)[0];
+            if(latestPatchFile === null || patchVersion > latestPatchVersion) {
+                latestPatchFile = file;
+                latestPatchVersion = patchVersion;
+            }
+        }
+    }
+
+    if(latestPatchFile === null) {
+        return null;
+    }
+
+    return latestPatchFile.download_url;
+}
+
+
 async function importOffsets() {
     console.log("Getting offsets from repository...");
+
+    if(gameVersion[0] === 0 && gameVersion[1] === 0) {
+        var response = await fetch('https://raw.communitydragon.org/latest/content-metadata.json');
+
+        if(!response.ok) {
+            console.error("Could not fetch game version. Status: " + response.status);
+            return;
+        }
+
+        var data = await response.json();
+        gameVersion = data.version.split(".").slice(0, 2);
+    }
+
+    console.log("Game version: " + gameVersion[0] + "." + gameVersion[1]);
+
+    var url = await getLatestPatchFileUrl();
+
+    if(url === null) {
+        console.error("Could not find offsets for game version " + gameVersion[0] + "." + gameVersion[1]);
+        return;
+    }
+
+    var response = await fetch(url);
+
+    if(!response.ok) {
+        console.error("Could not fetch offsets from repository. Status: " + response.status);
+        return;
+    }
+
+    var data = await response.json();
+
+
+    data.keys().forEach(key => {
+        data[key] = parseInt(data[key]);
+    });
+
+    
+    console.log(data);
+
+    
+
+
+    console.log("Offsets received. Importing...");
 
     var res = setOffsets({
         gameTime: 0x316FDE4,
@@ -194,6 +263,8 @@ function setChampions(championList) {
     console.error(res.error);
     return false;
 }
+
+
 
 function isReady() {
     return connected && offsetsSet && championsSet;
