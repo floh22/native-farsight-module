@@ -125,8 +125,9 @@ Sets the offsets used for memory reading. Must be done before any snapshot is re
 
 ### setChampionNames
 
-- `[in] champions: string[]` &nbsp;A lowercase list of all champion names/ids.
+- `[in] champions: string[]` &nbsp;A lowercase list of all champion names/ids
 - `[out] success: bool` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Operation sucess
+
 Sets the list of champions to scan for. Most common usage will be to use a full list of all champions currently in League of Legends. List must be lower case! Currently cannot be reset once set.
  
 ### isReady
@@ -137,7 +138,7 @@ Wether or not the library is ready to create Snapshots
 
 ### makeSnapshot
 
-- `[out] snapshot: Object` - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Snapshot object containing current game state information
+- `[out] snapshot: Object` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Snapshot object containing current game state information
 
 
 Creates a snapshot of all game objects currently in game. Farsight must be connected, as well as champion list and offsets provided.
