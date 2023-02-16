@@ -149,9 +149,13 @@ Creates a snapshot of all game objects currently in game. Farsight must be conne
 
 - `boolean`: Wether or not Farsight should automatically fetch the current list of all champions from [Community Dragon](https://communitydragon.org/). This takes place on `connectToLeague`.
 
+True by default. If set to false, you must provide the list before requesting a snapshot.
+
 ### autoImportOffsets
 
 - `boolean`: Wether or not Farsight should automatically fetch the current offsets from this repository. Repository currently not configurable! This takes place on `connectToLeague`.
+
+True by default. If set to false, you must provide offsets before requesting a snapshot.
 
 ---
 
@@ -171,7 +175,7 @@ __This is a standalone project from Lars Eble. Riot Games does not endorse or sp
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/floh22/LeagueBroadcast.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/floh22/native-farsight-module.svg?style=for-the-badge
 [contributors-url]: https://github.com/floh22/native-farsight-module/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/floh22/native-farsight-module.svg?style=for-the-badge
 [forks-url]: https://github.com/floh22/native-farsight-module/network/members
