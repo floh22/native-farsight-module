@@ -36,13 +36,18 @@ async function importChampionsFromCDragon() {
 
 async function getLatestPatchFileUrl() {
     var response = await fetch(offsetRepository);
+    if(!response.ok) {
+        console.error("Could not reach offset directory from repository. Status: " + response.status);
+        return null;
+    }
     var data = await response.json();
+
     
     var latestPatchFile = null;
     var latestPatchVersion = -1;
     for(var i = 0; i < data.length; i++) {
         var file = data[i];
-        var offsetVersion = file.name.replace(/[^\d.-]/g, '');
+        var offsetVersion = file.name.replace(/[^\d.]/g, '');
         if(offsetVersion.startsWith(gameVersion[0] + "." + gameVersion[1])) {
             var patchVersion = offsetVersion.split(".").slice(-1)[0];
             if(latestPatchFile === null || patchVersion > latestPatchVersion) {
@@ -94,48 +99,13 @@ async function importOffsets() {
     var data = await response.json();
 
 
-    data.keys().forEach(key => {
+    Object.keys(data).forEach(key => {
         data[key] = parseInt(data[key]);
     });
 
-    
-    console.log(data);
-
-    
-
-
     console.log("Offsets received. Importing...");
 
-    var res = setOffsets({
-        gameTime: 0x316FDE4,
-        objIndex: 0x8,
-        objTeam: 0x34,
-        objNetworkID: 0xB4,
-        objPosition: 0x1DC,
-        objHealth: 0xE7C,
-        objMaxHealth: 0xE8C,
-        objMana: 0x029C,
-        objMaxMana: 0x2AC,
-        objName: 0x2DB4,
-        objLvl: 0x35A4,
-        objExperience: 0x3594,
-        objCurrentGold: 0x1BB4,
-        objTotalGold: 0x1BC4,
-        objDisplayName: 0x54,
-        objDisplayNameLength: 0x64,
-    
-    
-        objectManager: 0x18D9ACC,
-        objectMapCount: 0x2C,
-        objectMapRoot: 0x28,
-        objectMapNodeNetId: 0x10,
-        objectMapNodeObject: 0x14,
-    
-        heroList: 0x18D9B6C,
-        minionList: 0x252729C,
-        turretList: 0X316EAC4,
-        inhibitorList: 0x0
-    });
+    var res = setOffsets(data);
 
     if(!res) {
         console.error("Offsets could not be imported into native module! Farsight will not work properly.");
@@ -150,13 +120,18 @@ function convertObjectDisplayNames(snapshot) {
         champion.displayName = textDecoder.decode(champion.displayName);
     }
 
+    for(var i = 0; i < snapshot.jungle.length; i++) {
+        var jungle = snapshot.jungle[i];
+        jungle.displayName = textDecoder.decode(jungle.displayName);
+    }
+
     for(var i = 0; i < snapshot.other.length; i++) {
         var other = snapshot.other[i];
         other.displayName = textDecoder.decode(other.displayName);
     }
     
+    snapshot.nextDragonType = snapshot.nextDragonType.replace(".troy", "");
 }
-
 
 function makeSnapshot() {
     if (!offsetsSet) {
@@ -181,6 +156,14 @@ function makeSnapshot() {
     }
 
     var snapshot = addon.makeSnapshot();
+
+    if((!snapshot.success && !snapshot.gameTime) || snapshot.gameTime === 0) {
+        disconnectFromLeague();
+        return {
+            gameTime: 0
+        };
+    }
+
     convertObjectDisplayNames(snapshot)
 
     return snapshot;
@@ -222,6 +205,7 @@ function disconnectFromLeague() {
     }
     var res = addon.disconnectFromLeague();
     if(res.success) {
+        console.log("Disconnected from league.");
         connected = false;
         return true;
     }
@@ -265,47 +249,15 @@ function setChampions(championList) {
 }
 
 
-
 function isReady() {
     return connected && offsetsSet && championsSet;
 }
 
-exports.connectToLeague = connectToLeague;
-exports.disconnectFromLeague = disconnectFromLeague;
-exports.makeSnapshot = makeSnapshot;
-exports.setOffsets = setOffsets;
-exports.isReady = isReady;
-exports.setChampionNames = addon.setChampionNames;
-exports.autoImportChampions = autoImportChampions;
-exports.autoImportOffsets = autoImportOffsets;
-
-
-// ---- TEMPOARY CODE ----
-
-
-async function init() {
-
-
-    var res = await connectToLeague();
-
-    if(isReady) {
-        console.log("Farsight is ready!");
-    }
-
-
-    var timeout = setInterval(() => {
-        if(!res.success) {
-            res = addon.connectToLeague();
-        }
-        if (res.success && isReady()) {
-            console.log(makeSnapshot());
-            
-        }
-    }
-        , 1000);
-}
-
-
-const boundInit = init.bind(this);
-
-boundInit();
+module.exports.connectToLeague = connectToLeague;
+module.exports.disconnectFromLeague = disconnectFromLeague;
+module.exports.makeSnapshot = makeSnapshot;
+module.exports.setOffsets = setOffsets;
+module.exports.isReady = isReady;
+module.exports.setChampionNames = addon.setChampionNames;
+module.exports.autoImportChampions = autoImportChampions;
+module.exports.autoImportOffsets = autoImportOffsets;

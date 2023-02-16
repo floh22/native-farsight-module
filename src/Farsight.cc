@@ -122,6 +122,9 @@ void Farsight::ReadObjects(Snapshot &snapshot)
 
     int objectManager = Memory::ReadDWORD(hProcess, baseAddress + Offsets::ObjectManager);
 
+    if(objectManager == 0)
+        return;
+        
     static char buff[0x500];
     Memory::Read(hProcess, objectManager, buff, 0x100);
 
@@ -241,10 +244,10 @@ void Farsight::ReadObjects(Snapshot &snapshot)
         if(Character::VectorStartsWith(obj->displayName, "Dragon_Indicator_"))
         {
             std::vector<char> dragonType(obj->displayName);
-            dragonType.erase(dragonType.end() - 5, dragonType.end());
+            // dragonType.erase(dragonType.end() - 5, dragonType.end());
             dragonType.erase(dragonType.begin(), dragonType.begin() + 17);
             snapshot.nextDragonType = std::string(dragonType.begin(), dragonType.end());
-
+            snapshot.jungle.push_back(obj);
             continue;
         }
 
