@@ -48,19 +48,18 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\include\node;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\src;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\openssl\config;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\openssl\openssl\include;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\uv\include;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\zlib;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\v8\include;F:\Repos\LeagueOfLegends\native-farsight-module\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/Zc:__cplusplus -std:c++17 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\include\node;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\src;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\openssl\config;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\openssl\openssl\include;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\uv\include;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\zlib;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\v8\include;F:\Repos\LeagueOfLegends\native-farsight-module\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/bigobj /MP %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <BufferSecurityCheck>true</BufferSecurityCheck>
-      <DebugInformationFormat>OldStyle</DebugInformationFormat>
-      <DisableSpecificWarnings>4351;4355;4800;4251;4275;4244;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4267;4351;4355;4800;4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ExceptionHandling>false</ExceptionHandling>
       <MinimalRebuild>false</MinimalRebuild>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <OmitFramePointers>false</OmitFramePointers>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=farsight;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;V8_DEPRECATION_WARNINGS;V8_IMMINENT_DEPRECATION_WARNINGS;_GLIBCXX_USE_CXX11_ABI=1;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;OPENSSL_NO_PINSHARED;OPENSSL_THREADS;NAPI_DISABLE_CPP_EXCEPTIONS;WIN32_LEAN_AND_MEAN;BUILDING_NODE_EXTENSION;HOST_BINARY=&quot;node.exe&quot;;DEBUG;_DEBUG;V8_ENABLE_CHECKS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=farsight;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;NAPI_DISABLE_CPP_EXCEPTIONS;WIN32_LEAN_AND_MEAN;BUILDING_NODE_EXTENSION;HOST_BINARY=&quot;node.exe&quot;;DEBUG;_DEBUG;V8_ENABLE_CHECKS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <StringPooling>true</StringPooling>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -72,39 +71,43 @@
       <AdditionalOptions>/LTCG:INCREMENTAL %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;DelayImp.lib;&quot;C:\\Users\\larse\\AppData\\Local\\node-gyp\\Cache\\19.1.0\\x64\\node.lib&quot;</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;DelayImp.lib;&quot;C:\\Users\\larse\\AppData\\Local\\node-gyp\\Cache\\iojs-3.0.0\\x64\\iojs.lib&quot;</AdditionalDependencies>
       <AdditionalOptions>/LTCG:INCREMENTAL /ignore:4199 %(AdditionalOptions)</AdditionalOptions>
+      <AllowIsolation>true</AllowIsolation>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
       <DelayLoadDLLs>node.exe;%(DelayLoadDLLs)</DelayLoadDLLs>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapExports>true</MapExports>
       <OptimizeReferences>true</OptimizeReferences>
       <OutputFile>$(OutDir)$(ProjectName).node</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetExt>.node</TargetExt>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\include\node;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\src;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\openssl\config;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\openssl\openssl\include;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\uv\include;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\zlib;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\v8\include;F:\Repos\LeagueOfLegends\native-farsight-module\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=farsight;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;V8_DEPRECATION_WARNINGS;V8_IMMINENT_DEPRECATION_WARNINGS;_GLIBCXX_USE_CXX11_ABI=1;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;OPENSSL_NO_PINSHARED;OPENSSL_THREADS;NAPI_DISABLE_CPP_EXCEPTIONS;WIN32_LEAN_AND_MEAN;BUILDING_NODE_EXTENSION;HOST_BINARY=&quot;node.exe&quot;;DEBUG;_DEBUG;V8_ENABLE_CHECKS;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\include\node;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\src;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\openssl\config;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\openssl\openssl\include;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\uv\include;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\zlib;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\v8\include;F:\Repos\LeagueOfLegends\native-farsight-module\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=farsight;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;NAPI_DISABLE_CPP_EXCEPTIONS;WIN32_LEAN_AND_MEAN;BUILDING_NODE_EXTENSION;HOST_BINARY=&quot;node.exe&quot;;DEBUG;_DEBUG;V8_ENABLE_CHECKS;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\include\node;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\src;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\openssl\config;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\openssl\openssl\include;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\uv\include;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\zlib;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\v8\include;F:\Repos\LeagueOfLegends\native-farsight-module\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/Zc:__cplusplus -std:c++17 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\include\node;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\src;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\openssl\config;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\openssl\openssl\include;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\uv\include;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\zlib;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\v8\include;F:\Repos\LeagueOfLegends\native-farsight-module\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
       <BufferSecurityCheck>true</BufferSecurityCheck>
-      <DebugInformationFormat>OldStyle</DebugInformationFormat>
-      <DisableSpecificWarnings>4351;4355;4800;4251;4275;4244;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4267;4351;4355;4800;4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ExceptionHandling>false</ExceptionHandling>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <OmitFramePointers>true</OmitFramePointers>
       <Optimization>Full</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=farsight;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;V8_DEPRECATION_WARNINGS;V8_IMMINENT_DEPRECATION_WARNINGS;_GLIBCXX_USE_CXX11_ABI=1;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;OPENSSL_NO_PINSHARED;OPENSSL_THREADS;NAPI_DISABLE_CPP_EXCEPTIONS;WIN32_LEAN_AND_MEAN;BUILDING_NODE_EXTENSION;HOST_BINARY=&quot;node.exe&quot;;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=farsight;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;NAPI_DISABLE_CPP_EXCEPTIONS;WIN32_LEAN_AND_MEAN;BUILDING_NODE_EXTENSION;HOST_BINARY=&quot;node.exe&quot;;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <StringPooling>true</StringPooling>
@@ -114,23 +117,28 @@
       <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <Lib>
-      <AdditionalOptions>/LTCG:INCREMENTAL %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/LTCG:INCREMENTAL /LTCG %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;DelayImp.lib;&quot;C:\\Users\\larse\\AppData\\Local\\node-gyp\\Cache\\19.1.0\\x64\\node.lib&quot;</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;DelayImp.lib;&quot;C:\\Users\\larse\\AppData\\Local\\node-gyp\\Cache\\iojs-3.0.0\\x64\\iojs.lib&quot;</AdditionalDependencies>
       <AdditionalOptions>/LTCG:INCREMENTAL /ignore:4199 %(AdditionalOptions)</AdditionalOptions>
+      <AllowIsolation>true</AllowIsolation>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
       <DelayLoadDLLs>node.exe;%(DelayLoadDLLs)</DelayLoadDLLs>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapExports>true</MapExports>
       <OptimizeReferences>true</OptimizeReferences>
       <OutputFile>$(OutDir)$(ProjectName).node</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetExt>.node</TargetExt>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\include\node;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\src;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\openssl\config;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\openssl\openssl\include;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\uv\include;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\zlib;C:\Users\larse\AppData\Local\node-gyp\Cache\19.1.0\deps\v8\include;F:\Repos\LeagueOfLegends\native-farsight-module\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=farsight;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;V8_DEPRECATION_WARNINGS;V8_IMMINENT_DEPRECATION_WARNINGS;_GLIBCXX_USE_CXX11_ABI=1;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;OPENSSL_NO_PINSHARED;OPENSSL_THREADS;NAPI_DISABLE_CPP_EXCEPTIONS;WIN32_LEAN_AND_MEAN;BUILDING_NODE_EXTENSION;HOST_BINARY=&quot;node.exe&quot;;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\include\node;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\src;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\openssl\config;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\openssl\openssl\include;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\uv\include;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\zlib;C:\Users\larse\AppData\Local\node-gyp\Cache\iojs-3.0.0\deps\v8\include;F:\Repos\LeagueOfLegends\native-farsight-module\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=farsight;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;NAPI_DISABLE_CPP_EXCEPTIONS;WIN32_LEAN_AND_MEAN;BUILDING_NODE_EXTENSION;HOST_BINARY=&quot;node.exe&quot;;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -152,7 +160,7 @@
     <ClCompile Include="..\src\index.cc">
       <ObjectFileName>$(IntDir)\src\index.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="C:\Program Files\nodejs\node_modules\npm\node_modules\node-gyp\src\win_delay_load_hook.cc"/>
+    <ClCompile Include="C:\Users\larse\AppData\Roaming\npm\node_modules\node-gyp\src\win_delay_load_hook.cc"/>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
   <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets"/>
