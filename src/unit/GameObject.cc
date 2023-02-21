@@ -98,7 +98,6 @@ Napi::Object GameObject::ToNapiObject(Napi::Env env)
     obj.Set("maxHealth", maxHealth);
     obj.Set("mana", mana);
     obj.Set("maxMana", maxMana);
-    obj.Set("address", Napi::Number::New(env, baseAddress));
 
     if (!isChampion)
         return obj;
