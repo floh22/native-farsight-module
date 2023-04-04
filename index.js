@@ -49,7 +49,7 @@ async function getLatestPatchFileUrl() {
         var file = data[i];
         var offsetVersion = file.name.replace(/[^\d.]/g, '');
         if(offsetVersion.startsWith(gameVersion[0] + "." + gameVersion[1])) {
-            var patchVersion = offsetVersion.split(".").slice(-1)[0];
+            var patchVersion = offsetVersion.split(".")[2];
             if(latestPatchFile === null || patchVersion > latestPatchVersion) {
                 latestPatchFile = file;
                 latestPatchVersion = patchVersion;
