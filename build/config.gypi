@@ -390,17 +390,6 @@
     "want_separate_host_toolset": 0,
     "nodedir": "C:\\Users\\larse\\AppData\\Local\\node-gyp\\Cache\\19.1.0",
     "standalone_static_library": 1,
-    "msbuild_path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe",
-    "cache": "C:\\Users\\larse\\AppData\\Local\\npm-cache",
-    "globalconfig": "C:\\Users\\larse\\AppData\\Roaming\\npm\\etc\\npmrc",
-    "global_prefix": "C:\\Users\\larse\\AppData\\Roaming\\npm",
-    "init_module": "C:\\Users\\larse\\.npm-init.js",
-    "local_prefix": "F:\\Repos\\LeagueOfLegends\\native-farsight-module",
-    "metrics_registry": "https://registry.npmjs.org/",
-    "msvs_version": "2017",
-    "node_gyp": "C:\\Program Files\\nodejs\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js",
-    "prefix": "C:\\Users\\larse\\AppData\\Roaming\\npm",
-    "userconfig": "C:\\Users\\larse\\.npmrc",
-    "user_agent": "npm/8.19.3 node/v19.1.0 win32 x64 workspaces/false"
+    "msbuild_path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe"
   }
 }
