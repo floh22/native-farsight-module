@@ -31,3 +31,12 @@ int Offsets::ObjLvl = 0x0;
 int Offsets::ObjExperience = 0x0;
 int Offsets::ObjCurrentGold = 0x0;
 int Offsets::ObjTotalGold = 0x0;
+int Offsets::ObjSpellBook = 0x0;
+int Offsets::ObjSpellBookSpellSlots = 0x0;
+
+int Offsets::SpellSlotLevel = 0x0;
+int Offsets::SpellSlotTime = 0x0;
+int Offsets::SpellSlotCharges = 0x0;
+int Offsets::SpellSlotInfo = 0x0;
+int Offsets::SpellSlotName = 0x0;
+

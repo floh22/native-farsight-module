@@ -101,6 +101,13 @@ Napi::Object setOffsets(const Napi::CallbackInfo &info)
     Offsets::ObjTotalGold = offsets.Get("objTotalGold").As<Napi::Number>().Int32Value();
     Offsets::ObjDisplayName = offsets.Get("objDisplayName").As<Napi::Number>().Int32Value();
     Offsets::ObjDisplayNameLength = offsets.Get("objDisplayNameLength").As<Napi::Number>().Int32Value();
+    Offsets::ObjSpellBook = offsets.Get("objSpellBook").As<Napi::Number>().Int32Value();
+    Offsets::ObjSpellBookSpellSlots = offsets.Get("objSpellBookSpellSlots").As<Napi::Number>().Int32Value();
+    Offsets::SpellSlotLevel = offsets.Get("spellSlotLevel").As<Napi::Number>().Int32Value();
+    Offsets::SpellSlotTime = offsets.Get("spellSlotTime").As<Napi::Number>().Int32Value();
+    Offsets::SpellSlotCharges = offsets.Get("spellSlotCharges").As<Napi::Number>().Int32Value();
+    Offsets::SpellSlotInfo = offsets.Get("spellSlotInfo").As<Napi::Number>().Int32Value();
+    Offsets::SpellSlotName = offsets.Get("spellSlotName").As<Napi::Number>().Int32Value();
 
 
    res.Set("success", Napi::Boolean::New(env, true));

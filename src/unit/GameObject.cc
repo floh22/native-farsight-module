@@ -65,13 +65,24 @@ void GameObject::LoadFromMemory(DWORD base, HANDLE hProcess, bool deepLoad)
     }
 }
 
-void GameObject::LoadChampionData()
+void GameObject::LoadChampionData(float gameTime)
 {
     isChampion = true;
     memcpy(&experience, &buff[Offsets::ObjExperience], sizeof(float));
     memcpy(&level, &buff[Offsets::ObjLvl], sizeof(int));
     memcpy(&currentGold, &buff[Offsets::ObjCurrentGold], sizeof(float));
     memcpy(&totalGold, &buff[Offsets::ObjTotalGold], sizeof(float));
+
+    DWORD32 spellBookQ = Memory::ReadDWORDFromBuffer(buff, Offsets::ObjSpellBook + Offsets::ObjSpellBookSpellSlots + 0x00);
+    DWORD32 spellBookW = Memory::ReadDWORDFromBuffer(buff, Offsets::ObjSpellBook + Offsets::ObjSpellBookSpellSlots + 0x04);
+    DWORD32 spellBookE = Memory::ReadDWORDFromBuffer(buff, Offsets::ObjSpellBook + Offsets::ObjSpellBookSpellSlots + 0x08);
+    DWORD32 spellBookR = Memory::ReadDWORDFromBuffer(buff, Offsets::ObjSpellBook + Offsets::ObjSpellBookSpellSlots + 0x0C);
+    DWORD32 spellBookD = Memory::ReadDWORDFromBuffer(buff, Offsets::ObjSpellBook + Offsets::ObjSpellBookSpellSlots + 0x10);
+    DWORD32 spellBookF = Memory::ReadDWORDFromBuffer(buff, Offsets::ObjSpellBook + Offsets::ObjSpellBookSpellSlots + 0x14);
+
+    //Do not load spell name for now, I think the ingame api already exposes this? (TODO)
+
+    spells[0]
 }
 
 bool GameObject::IsChampion()

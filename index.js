@@ -68,6 +68,7 @@ async function getLatestPatchFileUrl() {
 async function importOffsets() {
     console.log("Getting offsets from repository...");
 
+
     if(gameVersion[0] === 0 && gameVersion[1] === 0) {
         var response = await fetch('https://raw.communitydragon.org/latest/content-metadata.json');
 
@@ -248,6 +249,11 @@ function setChampions(championList) {
     return false;
 }
 
+function setGameVersion(version) {
+    gameVersion = version.split(".").slice(0, 2);
+    console.log("Game version manually set to: " + gameVersion[0] + "." + gameVersion[1]);
+}
+
 
 function isReady() {
     return connected && offsetsSet && championsSet;
@@ -261,3 +267,4 @@ module.exports.isReady = isReady;
 module.exports.setChampionNames = addon.setChampionNames;
 module.exports.autoImportChampions = autoImportChampions;
 module.exports.autoImportOffsets = autoImportOffsets;
+module.exports.setGameVersion = setGameVersion;

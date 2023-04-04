@@ -19,7 +19,14 @@ class Offsets {
         static int ObjExperience;
         static int ObjCurrentGold;
         static int ObjTotalGold;
+        static int ObjSpellBook;
+        static int ObjSpellBookSpellSlots;
 
+        static int SpellSlotLevel;
+        static int SpellSlotTime;
+        static int SpellSlotCharges;
+        static int SpellSlotInfo;
+        static int SpellSlotName;
 
         static int ObjectManager;
         static int ObjectMapCount;

@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "MemoryLoadable.h"
+#include "SpellData.h"
 
 enum IsChampionState
 {
@@ -59,6 +60,8 @@ public:
     float experience;
     float currentGold;
     float totalGold;
+
+    SpellData spells[6];
 
     Napi::Object ToNapiObject(Napi::Env env);
 };
