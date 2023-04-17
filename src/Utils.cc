@@ -4,27 +4,44 @@
 #include <ctime>
 #include <vector>
 
-DWORD Memory::ReadDWORD(HANDLE hProcess, DWORD addr)
+DWORD Memory::ReadDWORD(HANDLE hProcess, DWORD64 addr)
 {
     DWORD_PTR ptr = NULL;
     SIZE_T bytesRead = 0;
 
-    ReadProcessMemory(hProcess, (DWORD *)addr, &ptr, 4, &bytesRead);
+    ReadProcessMemory(hProcess, (DWORD64 *)addr, &ptr, 4, &bytesRead);
 
     return ptr;
 }
 
-void Memory::Read(HANDLE hProcess, DWORD addr, void *structure, int size)
+DWORD64 Memory::ReadDWORD64(HANDLE hProcess, DWORD64 addr)
+{
+    DWORD_PTR ptr = NULL;
+    SIZE_T bytesRead = 0;
+
+    ReadProcessMemory(hProcess, (DWORD64 *)addr, &ptr, 8, &bytesRead);
+
+    return ptr;
+}
+
+void Memory::Read(HANDLE hProcess, DWORD64 addr, void *structure, int size)
 {
     SIZE_T bytesRead = 0;
 
-    ReadProcessMemory(hProcess, (DWORD *)addr, structure, size, &bytesRead);
+    ReadProcessMemory(hProcess, (DWORD64 *)addr, structure, size, &bytesRead);
 }
 
 DWORD Memory::ReadDWORDFromBuffer(void *buff, int position)
 {
     DWORD result;
     memcpy(&result, (char *)buff + position, 4);
+    return result;
+}
+
+DWORD64 Memory::ReadDWORD64FromBuffer(void *buff, int position)
+{
+    DWORD64 result;
+    memcpy(&result, (char *)buff + position, 8);
     return result;
 }
 

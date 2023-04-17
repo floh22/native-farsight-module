@@ -107,7 +107,7 @@ void Farsight::ReadObjects(Snapshot &snapshot)
 {
 
     static const int maxObjects = 1024;
-    static int pointerArray[maxObjects];
+    static DWORD64 pointerArray[maxObjects];
 
     std::chrono::high_resolution_clock::time_point readTimeBegin;
     std::chrono::duration<float, std::milli> readDuration;
@@ -120,7 +120,7 @@ void Farsight::ReadObjects(Snapshot &snapshot)
     snapshot.other.clear();
     snapshot.nextDragonType.clear();
 
-    int objectManager = Memory::ReadDWORD(hProcess, baseAddress + Offsets::ObjectManager);
+    DWORD64 objectManager = Memory::ReadDWORD64(hProcess, baseAddress + Offsets::ObjectManager);
 
     if(objectManager == 0)
         return;
@@ -128,17 +128,17 @@ void Farsight::ReadObjects(Snapshot &snapshot)
     static char buff[0x500];
     Memory::Read(hProcess, objectManager, buff, 0x100);
 
-    int rootNode;
-    memcpy(&rootNode, buff + Offsets::ObjectMapRoot, sizeof(int));
+    DWORD64 rootNode;
+    memcpy(&rootNode, buff + Offsets::ObjectMapRoot, sizeof(DWORD64));
 
-    std::queue<int> nodesToVisit;
-    std::set<int> visitedNodes;
+    std::queue<DWORD64> nodesToVisit;
+    std::set<DWORD64> visitedNodes;
     nodesToVisit.push(rootNode);
 
     // Read object pointers from tree
     int nrObj = 0;
     int reads = 0;
-    int childNode1, childNode2, childNode3, node;
+    DWORD64 childNode1, childNode2, childNode3, node;
     while (reads < maxObjects && nodesToVisit.size() > 0)
     {
         node = nodesToVisit.front();
@@ -148,11 +148,11 @@ void Farsight::ReadObjects(Snapshot &snapshot)
 
         reads++;
         visitedNodes.insert(node);
-        Memory::Read(hProcess, node, buff, 0x30);
+        Memory::Read(hProcess, node, buff, 0x50);
 
-        memcpy(&childNode1, buff, sizeof(int));
-        memcpy(&childNode2, buff + 4, sizeof(int));
-        memcpy(&childNode3, buff + 8, sizeof(int));
+        memcpy(&childNode1, buff, sizeof(DWORD64));
+        memcpy(&childNode2, buff + 8, sizeof(DWORD64));
+        memcpy(&childNode3, buff + 16, sizeof(DWORD64));
 
         nodesToVisit.push(childNode1);
         nodesToVisit.push(childNode2);
@@ -167,8 +167,8 @@ void Farsight::ReadObjects(Snapshot &snapshot)
             continue;
         */
 
-        int addr;
-        memcpy(&addr, buff + Offsets::ObjectMapNodeObject, sizeof(int));
+        DWORD64 addr;
+        memcpy(&addr, buff + Offsets::ObjectMapNodeObject, sizeof(DWORD64));
         if (addr == 0)
             continue;
 
@@ -207,7 +207,6 @@ void Farsight::ReadObjects(Snapshot &snapshot)
         {
             continue;
         }
-
         snapshot.indexToNetId[obj->objectIndex] = obj->networkId;
         snapshot.updatedObjects.insert(obj->networkId);
 

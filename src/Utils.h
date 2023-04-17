@@ -43,11 +43,13 @@ private:
 
 namespace Memory
 {
-    DWORD ReadDWORD(HANDLE hProcess, DWORD address);
+    DWORD ReadDWORD(HANDLE hProcess, DWORD64 address);
+    DWORD64 ReadDWORD64(HANDLE hProcess, DWORD64 address);
 
-    void Read(HANDLE hProcess, DWORD address, void *buffer, int size);
+    void Read(HANDLE hProcess, DWORD64 address, void *buffer, int size);
 
     DWORD ReadDWORDFromBuffer(void *buffer, int offset);
+    DWORD64 ReadDWORD64FromBuffer(void *buff, int position);
 }
 
 namespace Process

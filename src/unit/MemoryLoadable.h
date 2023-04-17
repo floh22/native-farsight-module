@@ -2,5 +2,5 @@
 #include "Windows.h"
 
 class MemoryLoadable {
-    virtual void LoadFromMemory(DWORD base, HANDLE hProcess, bool deepLoad = true) = 0;
+    virtual void LoadFromMemory(DWORD64 base, HANDLE hProcess, bool deepLoad = true) = 0;
 };
