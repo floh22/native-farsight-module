@@ -18,7 +18,7 @@ bool GameObject::IsNotEqualTo(const GameObject &other) const
     return this->objectIndex != other.objectIndex;
 }
 
-void GameObject::LoadFromMemory(DWORD base, HANDLE hProcess, bool deepLoad)
+void GameObject::LoadFromMemory(DWORD64 base, HANDLE hProcess, bool deepLoad)
 {
     baseAddress = base;
     Memory::Read(hProcess, base, buff, sizeBuff);
@@ -37,7 +37,7 @@ void GameObject::LoadFromMemory(DWORD base, HANDLE hProcess, bool deepLoad)
     if (deepLoad)
     {
         char nameBuff[50];
-        Memory::Read(hProcess, Memory::ReadDWORDFromBuffer(buff, Offsets::ObjName), nameBuff, 50);
+        Memory::Read(hProcess, Memory::ReadDWORD64FromBuffer(buff, Offsets::ObjName), nameBuff, 50);
 
         if (Character::ContainsOnlyASCII(nameBuff, 50))
         {
@@ -48,7 +48,7 @@ void GameObject::LoadFromMemory(DWORD base, HANDLE hProcess, bool deepLoad)
             name = "";
         }
 
-        int displayNameLength = Memory::ReadDWORDFromBuffer(buff, Offsets::ObjDisplayNameLength);
+        int displayNameLength = Memory::ReadDWORD64FromBuffer(buff, Offsets::ObjDisplayNameLength);
 
         if (displayNameLength < 16)
         {
@@ -58,7 +58,7 @@ void GameObject::LoadFromMemory(DWORD base, HANDLE hProcess, bool deepLoad)
         else
         {
             char displayNameBuff[50];
-            Memory::Read(hProcess, Memory::ReadDWORDFromBuffer(buff, Offsets::ObjDisplayName), displayNameBuff, 50);
+            Memory::Read(hProcess, Memory::ReadDWORD64FromBuffer(buff, Offsets::ObjDisplayName), displayNameBuff, 50);
             displayName.resize(displayNameLength);
             memcpy(displayName.data(), &displayNameBuff[0], displayNameLength);
         }

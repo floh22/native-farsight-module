@@ -17,7 +17,7 @@ enum IsChampionState
 class GameObject : MemoryLoadable
 {
 public:
-    void LoadFromMemory(DWORD base, HANDLE hProcess, bool deepLoad = false);
+    void LoadFromMemory(DWORD64 base, HANDLE hProcess, bool deepLoad = false);
 
     bool IsEqualTo(const GameObject &other) const;
     bool IsNotEqualTo(const GameObject &other) const;
@@ -39,10 +39,10 @@ public:
     float position[3];
 
     DWORD networkId;
-    DWORD baseAddress;
+    DWORD64 baseAddress;
 
 protected:
-    static const SIZE_T sizeBuff = 0x3600;
+    static const SIZE_T sizeBuff = 0x4100;
     static const SIZE_T sizeBuffDeep = 0x1000;
 
     static BYTE buff[sizeBuff];
@@ -50,7 +50,7 @@ protected:
 
     // Champion related
 public:
-    void LoadChampionFromMemory(DWORD base, HANDLE hProcess, bool deepLoad = true);
+    void LoadChampionFromMemory(DWORD64 base, HANDLE hProcess, bool deepLoad = true);
     void LoadChampionData();
 
     bool IsChampion();
