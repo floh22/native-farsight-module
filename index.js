@@ -253,11 +253,16 @@ function isReady() {
     return connected && offsetsSet && championsSet;
 }
 
+function setVersion(version) {
+    gameVersion = version.split(".").slice(0, 2);
+}
+
 module.exports.connectToLeague = connectToLeague;
 module.exports.disconnectFromLeague = disconnectFromLeague;
 module.exports.makeSnapshot = makeSnapshot;
 module.exports.setOffsets = setOffsets;
 module.exports.isReady = isReady;
+module.exports.setVersion = setVersion;
 module.exports.setChampionNames = addon.setChampionNames;
 module.exports.autoImportChampions = autoImportChampions;
 module.exports.autoImportOffsets = autoImportOffsets;
