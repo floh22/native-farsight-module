@@ -117,16 +117,19 @@ function convertObjectDisplayNames(snapshot) {
     var textDecoder = new TextDecoder();
     for (var i = 0; i < snapshot.champions.length; i++) {
         var champion = snapshot.champions[i];
+        champion.name = textDecoder.decode(champion.name);
         champion.displayName = textDecoder.decode(champion.displayName);
     }
 
     for(var i = 0; i < snapshot.jungle.length; i++) {
         var jungle = snapshot.jungle[i];
+        jungle.name = textDecoder.decode(jungle.name);
         jungle.displayName = textDecoder.decode(jungle.displayName);
     }
 
     for(var i = 0; i < snapshot.other.length; i++) {
         var other = snapshot.other[i];
+        other.name = textDecoder.decode(other.name);
         other.displayName = textDecoder.decode(other.displayName);
     }
     
