@@ -1,6 +1,6 @@
 {
   "name": "@larseble/farsight",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A native library to read League of Legends process memory",
   "main": "index.js",
   "typings": "index.d.ts",

@@ -1,3 +1,4 @@
+#include <iostream>
 #include <set>
 #include <queue>
 #include <limits>
@@ -218,7 +219,10 @@ void Farsight::ReadObjects(Snapshot &snapshot)
 
         */
 
-        if (championNames.find(obj->name) != championNames.end())
+        std::string name = std::string(obj->name.begin(), obj->name.end());
+        std::transform(name.begin(), name.end(), name.begin(), [](unsigned char c){ return std::tolower(c); });
+
+        if (championNames.find(name) != championNames.end())
         {
             obj->LoadChampionData();
             snapshot.champions.push_back(obj);
@@ -250,19 +254,19 @@ void Farsight::ReadObjects(Snapshot &snapshot)
             continue;
         }
 
-        if (obj->name.find("sru_dragon", 0) != std::string::npos)
+        if (Character::VectorStartsWith(obj->name, "SRU_Dragon"))
         {
             snapshot.jungle.push_back(obj);
             continue;
         }
 
-        if (obj->name.find("sru_baron", 0) != std::string::npos)
+        if (Character::VectorStartsWith(obj->name, "SRU_Baron"))
         {
             snapshot.jungle.push_back(obj);
             continue;
         }
 
-        if (obj->name.find("sru_riftherald", 0) != std::string::npos)
+        if (Character::VectorStartsWith(obj->name, "SRU_RiftHerald"))
         {
             snapshot.jungle.push_back(obj);
             continue;

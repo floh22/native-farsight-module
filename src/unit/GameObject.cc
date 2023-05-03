@@ -36,16 +36,20 @@ void GameObject::LoadFromMemory(DWORD64 base, HANDLE hProcess, bool deepLoad)
 
     if (deepLoad)
     {
-        char nameBuff[50];
-        Memory::Read(hProcess, Memory::ReadDWORD64FromBuffer(buff, Offsets::ObjName), nameBuff, 50);
+        int nameLength = Memory::ReadDWORD64FromBuffer(buff, Offsets::ObjNameLength);
 
-        if (Character::ContainsOnlyASCII(nameBuff, 50))
+        if (nameLength <= 0 || nameLength > 100) {}
+        else if (nameLength < 16)
         {
-            name = Character::ToLower(std::string(nameBuff));
+            name.resize(nameLength);
+            memcpy(name.data(), &buff[Offsets::ObjName], nameLength);
         }
         else
         {
-            name = "";
+            char nameBuff[50];
+            Memory::Read(hProcess, Memory::ReadDWORD64FromBuffer(buff, Offsets::ObjName), nameBuff, 50);
+            name.resize(nameLength);
+            memcpy(name.data(), &nameBuff[0], nameLength);
         }
 
         int displayNameLength = Memory::ReadDWORD64FromBuffer(buff, Offsets::ObjDisplayNameLength);
@@ -82,7 +86,8 @@ bool GameObject::IsChampion()
 Napi::Object GameObject::ToNapiObject(Napi::Env env)
 {
     Napi::Object obj = Napi::Object::New(env);
-    obj.Set("name", name);
+    Napi::Buffer<char> nameBuffer = Napi::Buffer<char>::Copy(env, name.data(), name.size());
+    obj.Set("name", nameBuffer);
     Napi::Buffer<char> displayNameBuffer = Napi::Buffer<char>::Copy(env, displayName.data(), displayName.size());
     obj.Set("displayName", displayNameBuffer);
     obj.Set("networkId", networkId);

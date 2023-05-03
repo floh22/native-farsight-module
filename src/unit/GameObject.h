@@ -34,7 +34,7 @@ public:
     bool isAlive;
     bool isChampion;
 
-    std::string name;
+    std::vector<char> name;
     std::vector<char> displayName;
     float position[3];
 

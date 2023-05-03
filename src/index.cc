@@ -95,6 +95,7 @@ Napi::Object setOffsets(const Napi::CallbackInfo &info)
     Offsets::ObjMana = offsets.Get("objMana").As<Napi::Number>().Int32Value();
     Offsets::ObjMaxMana = offsets.Get("objMaxMana").As<Napi::Number>().Int32Value();
     Offsets::ObjName = offsets.Get("objName").As<Napi::Number>().Int32Value();
+    Offsets::ObjNameLength = offsets.Get("objNameLength").As<Napi::Number>().Int32Value();
     Offsets::ObjLvl = offsets.Get("objLvl").As<Napi::Number>().Int32Value();
     Offsets::ObjExperience = offsets.Get("objExperience").As<Napi::Number>().Int32Value();
     Offsets::ObjCurrentGold = offsets.Get("objCurrentGold").As<Napi::Number>().Int32Value();

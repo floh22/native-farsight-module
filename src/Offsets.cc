@@ -27,6 +27,7 @@ int Offsets::ObjMaxMana = 0x0;
 int Offsets::ObjDisplayNameLength = 0x0;
 int Offsets::ObjDisplayName = 0x0;
 int Offsets::ObjName = 0x0;
+int Offsets::ObjNameLength = 0x0;
 int Offsets::ObjLvl = 0x0;
 int Offsets::ObjExperience = 0x0;
 int Offsets::ObjCurrentGold = 0x0;

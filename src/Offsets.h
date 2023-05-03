@@ -15,6 +15,7 @@ class Offsets {
         static int ObjDisplayNameLength;
         static int ObjDisplayName;
         static int ObjName;
+        static int ObjNameLength;
         static int ObjLvl;
         static int ObjExperience;
         static int ObjCurrentGold;
