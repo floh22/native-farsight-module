@@ -76,7 +76,7 @@ There is a [Text tutorial](https://github.com/floh22/LeagueBroadcast/tree/v2/Lea
 init library connection with the league process.
 
 
-### disconenctFromLeague
+### disconnectFromLeague
 
 - `[out] success: bool` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Operation sucess
 
