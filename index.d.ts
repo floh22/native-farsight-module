@@ -59,6 +59,7 @@ declare module "@larseble/farsight" {
   export function setOffsets(offsets: Offsets): boolean
   export function isReady(): boolean
   export function setChampionNames(champions: string[]): boolean
+  export function setVersion(version: string): void
   export let autoImportChampions: boolean
   export let autoImportOffsets: boolean
 }
