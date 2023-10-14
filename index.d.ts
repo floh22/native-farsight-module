@@ -53,7 +53,7 @@ declare module "@larseble/farsight" {
     objDisplayNameLength: number;
   }
 
-  export async function connectToLeague(): Promise<boolean>
+  export function connectToLeague(): Promise<boolean>
   export function disconnectFromLeague(): boolean
   export function makeSnapshot(): Snapshot
   export function setOffsets(offsets: Offsets): boolean
