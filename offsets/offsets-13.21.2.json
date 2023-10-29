@@ -1,0 +1,30 @@
+{
+  "gameTime": "0x21E3948",
+  "objIndex": "0x10",
+  "objTeam": "0x3C",
+  "objNetworkID": "0xC8",
+  "objPosition": "0x220",
+  "objHealth": "0x1068",
+  "objMaxHealth": "0x1080",
+  "objMana": "0x350",
+  "objMaxMana": "0x368",
+  "objName": "0x3868",
+  "objNameLength": "0x3878",
+  "objLvl": "0x3FD0",
+  "objExperience": "0x3FB8",
+  "objCurrentGold": "0x2148",
+  "objTotalGold": "0x2160",
+  "objDisplayName": "0x60",
+  "objDisplayNameLength": "0x70",
+
+  "objectManager": "0x21DA220",
+  "objectMapCount": "0x48",
+  "objectMapRoot": "0x40",
+  "objectMapNodeNetId": "0x20",
+  "objectMapNodeObject": "0x28",
+ 
+  "heroList": "0x21D9340",
+  "minionList": "0x21DC2B0",
+  "turretList": "0x21E2BC0",
+  "inhibitorList": "0x0"
+}
