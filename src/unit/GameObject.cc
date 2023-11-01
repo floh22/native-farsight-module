@@ -51,20 +51,24 @@ void GameObject::LoadFromMemory(DWORD64 base, HANDLE hProcess, bool deepLoad)
             name.resize(nameLength);
             memcpy(name.data(), &nameBuff[0], nameLength);
         }
+        try {
+            int displayNameLength = Memory::ReadDWORD64FromBuffer(buff, Offsets::ObjDisplayNameLength);
 
-        int displayNameLength = Memory::ReadDWORD64FromBuffer(buff, Offsets::ObjDisplayNameLength);
-
-        if (displayNameLength < 16)
-        {
-            displayName.resize(displayNameLength);
-            memcpy(displayName.data(), &buff[Offsets::ObjDisplayName], displayNameLength);
-        }
-        else
-        {
-            char displayNameBuff[50];
-            Memory::Read(hProcess, Memory::ReadDWORD64FromBuffer(buff, Offsets::ObjDisplayName), displayNameBuff, 50);
-            displayName.resize(displayNameLength);
-            memcpy(displayName.data(), &displayNameBuff[0], displayNameLength);
+            if (displayNameLength < 16)
+            {
+                displayName.resize(displayNameLength);
+                memcpy(displayName.data(), &buff[Offsets::ObjDisplayName], displayNameLength);
+            }
+            else
+            {
+                char displayNameBuff[50];
+                Memory::Read(hProcess, Memory::ReadDWORD64FromBuffer(buff, Offsets::ObjDisplayName), displayNameBuff, 50);
+                displayName.resize(displayNameLength);
+                memcpy(displayName.data(), &displayNameBuff[0], displayNameLength);
+            }
+        } catch (...) {
+            displayName.resize(5);
+            memcpy(displayName.data(), "N/A", 5);
         }
     }
 }
