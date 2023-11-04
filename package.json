@@ -1,5 +1,5 @@
 {
-  "name": "@larseble/farsight",
+  "name": "@floh22/farsight",
   "version": "1.2.3",
   "description": "A native library to read League of Legends process memory",
   "main": "index.js",
