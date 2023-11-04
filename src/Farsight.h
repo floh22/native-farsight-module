@@ -37,16 +37,16 @@ public:
 
     bool IsHooked();
 
-    void CreateSnapshot(Snapshot &snapshot);
+    void CreateSnapshot(Snapshot &snapshotn, Napi::Env env);
 
-    void CreateChampionSnapshot(ChampionSnapshot &snapshot);
+    void CreateChampionSnapshot(ChampionSnapshot &snapshot, Napi::Env env);
 
     static std::set<std::string> championNames;
 
 private:
     void ClearMissingObjects(Snapshot &snapshot);
 
-    void ReadObjects(Snapshot &snapshot);
+    void ReadObjects(Snapshot &snapshot, Napi::Env env);
 
-    void ReadChampions(ChampionSnapshot &snapshot);
+    void ReadChampions(ChampionSnapshot &snapshot, Napi::Env env);
 };

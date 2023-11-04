@@ -28,7 +28,7 @@ Napi::Object makeSnapshot(const Napi::CallbackInfo &info)
 
     Snapshot s;
 
-    f.CreateSnapshot(s);
+    f.CreateSnapshot(s, env);
 
     Napi::Object snapshot = s.ToNapiObject(env);
 

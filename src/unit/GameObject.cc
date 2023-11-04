@@ -38,7 +38,9 @@ void GameObject::LoadFromMemory(DWORD64 base, HANDLE hProcess, bool deepLoad)
     {
         int nameLength = Memory::ReadDWORD64FromBuffer(buff, Offsets::ObjNameLength);
 
-        if (nameLength <= 0 || nameLength > 100) {}
+        if (nameLength <= 0 || nameLength > 100)
+        {
+        }
         else if (nameLength < 16)
         {
             name.resize(nameLength);
@@ -54,17 +56,35 @@ void GameObject::LoadFromMemory(DWORD64 base, HANDLE hProcess, bool deepLoad)
 
         int displayNameLength = Memory::ReadDWORD64FromBuffer(buff, Offsets::ObjDisplayNameLength);
 
-        if (displayNameLength < 16)
+        // disregard invalid data (should never happen)
+        if (displayNameLength == 0 || displayNameLength > 100)
         {
-            displayName.resize(displayNameLength);
-            memcpy(displayName.data(), &buff[Offsets::ObjDisplayName], displayNameLength);
+            displayName.resize(0);
+            throw Napi::Error::New(env, "Invalid display name length");
+            return;
         }
-        else
+
+        try
         {
-            char displayNameBuff[50];
-            Memory::Read(hProcess, Memory::ReadDWORD64FromBuffer(buff, Offsets::ObjDisplayName), displayNameBuff, 50);
-            displayName.resize(displayNameLength);
-            memcpy(displayName.data(), &displayNameBuff[0], displayNameLength);
+            if (displayNameLength < 16)
+            {
+                displayName.resize(displayNameLength);
+                memcpy(displayName.data(), &buff[Offsets::ObjDisplayName], displayNameLength);
+            }
+            else
+            {
+                char displayNameBuff[50];
+                Memory::Read(hProcess, Memory::ReadDWORD64FromBuffer(buff, Offsets::ObjDisplayName), displayNameBuff, 50);
+                displayName.resize(displayNameLength);
+                memcpy(displayName.data(), &displayNameBuff[0], displayNameLength);
+            }
+        } catch (const std::exception& e) {
+            displayName.resize(0);
+
+            //get all exception data, create a string and throw it
+            std::string exceptionString = std::string(e.what());
+            throw Napi::Error::New(env, exceptionString);
+            return;
         }
     }
 }
@@ -83,7 +103,7 @@ bool GameObject::IsChampion()
     return isChampion;
 }
 
-Napi::Object GameObject::ToNapiObject(Napi::Env env)
+Napi::Object GameObject::ToNapiObject()
 {
     Napi::Object obj = Napi::Object::New(env);
     Napi::Buffer<char> nameBuffer = Napi::Buffer<char>::Copy(env, name.data(), name.size());

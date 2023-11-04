@@ -17,6 +17,9 @@ enum IsChampionState
 class GameObject : MemoryLoadable
 {
 public:
+    GameObject(Napi::Env environment) : env(environment) {
+        env = environment;
+    }
     void LoadFromMemory(DWORD64 base, HANDLE hProcess, bool deepLoad = false);
 
     bool IsEqualTo(const GameObject &other) const;
@@ -33,6 +36,8 @@ public:
 
     bool isAlive;
     bool isChampion;
+
+    Napi::Env env;
 
     std::vector<char> name;
     std::vector<char> displayName;
@@ -60,5 +65,5 @@ public:
     float currentGold;
     float totalGold;
 
-    Napi::Object ToNapiObject(Napi::Env env);
+    Napi::Object ToNapiObject();
 };
