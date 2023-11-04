@@ -1,4 +1,4 @@
-declare module "@larseble/farsight" {
+declare module "@floh22/farsight" {
 
   export interface GameObject {
     name: string;
