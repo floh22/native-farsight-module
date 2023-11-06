@@ -6,7 +6,9 @@
   "typings": "index.d.ts",
   "scripts": {
     "configure": "node-gyp configure",
-    "build": "node-gyp build"
+    "rebuild": "node-gyp rebuild",
+    "build": "node-gyp build",
+    "start": "node index.js"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"

@@ -4,6 +4,8 @@
 #include "../Offsets.h"
 #include <napi.h>
 #include <vector>
+#include <string>
+#include <sstream>
 
 BYTE GameObject::buff[GameObject::sizeBuff] = {};
 BYTE GameObject::buffDeep[GameObject::sizeBuffDeep] = {};
@@ -40,6 +42,7 @@ void GameObject::LoadFromMemory(DWORD64 base, HANDLE hProcess, bool deepLoad)
 
         if (nameLength <= 0 || nameLength > 100)
         {
+            name.resize(0);
         }
         else if (nameLength < 16)
         {
@@ -56,11 +59,18 @@ void GameObject::LoadFromMemory(DWORD64 base, HANDLE hProcess, bool deepLoad)
 
         int displayNameLength = Memory::ReadDWORD64FromBuffer(buff, Offsets::ObjDisplayNameLength);
 
+        if(displayNameLength == 0) {
+            displayName.resize(0);
+            return;
+        }
+
         // disregard invalid data (should never happen)
-        if (displayNameLength == 0 || displayNameLength > 100)
+        if (displayNameLength > 100)
         {
             displayName.resize(0);
-            throw Napi::Error::New(env, "Invalid display name length");
+            std::ostringstream oss;
+            oss << "Invalid display name length: " << displayNameLength << " for object " << std::string(name.data()) << " (" << networkId << ")";
+            throw Napi::Error::New(env, oss.str());
             return;
         }
 
