@@ -27,6 +27,7 @@ struct Snapshot
 
     std::unique_ptr<ReadBenchmark> benchmark = std::unique_ptr<ReadBenchmark>(new ReadBenchmark());
 
+
     Napi::Object ToNapiObject(Napi::Env env)
     {
         Napi::Object obj = Napi::Object::New(env);
@@ -34,35 +35,35 @@ struct Snapshot
         Napi::Array champions = Napi::Array::New(env, this->champions.size());
         for (int i = 0; i < this->champions.size(); i++)
         {
-            champions[i] = this->champions[i]->ToNapiObject(env);
+            champions[i] = this->champions[i]->ToNapiObject();
         }
         obj.Set("champions", champions);
 
         Napi::Array jungle = Napi::Array::New(env, this->jungle.size());
         for (int i = 0; i < this->jungle.size(); i++)
         {
-            jungle[i] = this->jungle[i]->ToNapiObject(env);
+            jungle[i] = this->jungle[i]->ToNapiObject();
         }
         obj.Set("jungle", jungle);
 
         Napi::Array turrets = Napi::Array::New(env, this->turrets.size());
         for (int i = 0; i < this->turrets.size(); i++)
         {
-            turrets[i] = this->turrets[i]->ToNapiObject(env);
+            turrets[i] = this->turrets[i]->ToNapiObject();
         }
         obj.Set("turrets", turrets);
 
         Napi::Array inhibitors = Napi::Array::New(env, this->inhibitors.size());
         for (int i = 0; i < this->inhibitors.size(); i++)
         {
-            inhibitors[i] = this->inhibitors[i]->ToNapiObject(env);
+            inhibitors[i] = this->inhibitors[i]->ToNapiObject();
         }
         obj.Set("inhibitors", inhibitors);
 
         Napi::Array other = Napi::Array::New(env, this->other.size());
         for (int i = 0; i < this->other.size(); i++)
         {
-            other[i] = this->other[i]->ToNapiObject(env);
+            other[i] = this->other[i]->ToNapiObject();
         }
         obj.Set("other", other);
 
