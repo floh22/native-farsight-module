@@ -20,9 +20,7 @@
 This a nodejs native module which utilizes native memory reading with a js interface.
 
 Farsight uses Memory Reading to get information that the Riot API does not expose. Riot's policy in the past has been to allow passive memory reading, which is exactly what this program does, but this may change at any time.
-Use Farsight at your own risk. Anti Cheat does not ban for programs used during spectate, but it does however run while in a live game. Having Farsight open
-during a live (non-spectate) game may lead to account bans incase checks to stop it from running fail for some reason. None have been reported so far and [League Broadcast](https://github.com/floh22/LeagueBroadcast) has used similar methods for around two years now.
-
+Farsight currently provides little use during live games and is tailored to be used during spectate games. During live games, objects the player does not see will not be read properly, leading to incorrect or outdated data
 ---
 
 <h2 align="center">Features </h2>

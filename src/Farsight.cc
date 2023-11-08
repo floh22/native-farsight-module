@@ -103,7 +103,7 @@ void Farsight::ClearMissingObjects(Snapshot &snapshot)
     }
 }
 
-void Farsight::ReadObjects(Snapshot &snapshot)
+void Farsight::ReadObjects(Snapshot &snapshot, Napi::Env env)
 {
 
     static const int maxObjects = 1024;
@@ -161,12 +161,6 @@ void Farsight::ReadObjects(Snapshot &snapshot)
         unsigned int netId = 0;
         memcpy(&netId, buff + Offsets::ObjectMapNodeNetId, sizeof(int));
 
-        // Check all network ids instead of only the largest because we want troys as well
-        /*
-        if (netId - (unsigned int)0x40000000 > 0x100000)
-            continue;
-        */
-
         DWORD64 addr;
         memcpy(&addr, buff + Offsets::ObjectMapNodeObject, sizeof(DWORD64));
         if (addr == 0)
@@ -188,14 +182,14 @@ void Farsight::ReadObjects(Snapshot &snapshot)
         auto it = snapshot.objectMap.find(netId);
         if (it == snapshot.objectMap.end())
         {
-            obj = std::shared_ptr<GameObject>(new GameObject());
+            obj = std::shared_ptr<GameObject>(new GameObject(env));
             obj->LoadFromMemory(pointerArray[i], hProcess, true);
             snapshot.objectMap[obj->networkId] = obj;
         }
         else
         {
             obj = it->second;
-            obj->LoadFromMemory(pointerArray[i], hProcess, true);
+            obj->LoadFromMemory(pointerArray[i], hProcess, false);
 
             if (netId != obj->networkId)
             {
@@ -278,22 +272,22 @@ void Farsight::ReadObjects(Snapshot &snapshot)
     snapshot.benchmark->readObjectsMs = readDuration.count();
 }
 
-void Farsight::ReadChampions(ChampionSnapshot &snapshot)
+void Farsight::ReadChampions(ChampionSnapshot &snapshot, Napi::Env env)
 {
 }
 
-void Farsight::CreateSnapshot(Snapshot &snapshot)
+void Farsight::CreateSnapshot(Snapshot &snapshot, Napi::Env env)
 {
     Memory::Read(hProcess, baseAddress + Offsets::GameTime, &snapshot.gameTime, sizeof(float));
 
     if (snapshot.gameTime <= 5.0f)
         return;
 
-    ReadObjects(snapshot);
+    ReadObjects(snapshot, env);
     ClearMissingObjects(snapshot);
 };
 
-void Farsight::CreateChampionSnapshot(ChampionSnapshot &championSnapshot)
+void Farsight::CreateChampionSnapshot(ChampionSnapshot &championSnapshot, Napi::Env env)
 {
     Memory::Read(hProcess, baseAddress + Offsets::GameTime, &championSnapshot.gameTime, sizeof(float));
 }

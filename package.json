@@ -1,16 +1,21 @@
 {
-  "name": "@larseble/farsight",
-  "version": "1.2.0",
+  "name": "@floh22/farsight",
+  "version": "1.2.4",
   "description": "A native library to read League of Legends process memory",
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
     "configure": "node-gyp configure",
-    "build": "node-gyp build"
+    "rebuild": "node-gyp rebuild",
+    "build": "node-gyp build",
+    "start": "node index.js"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/floh22/native-farsight-module.git"
+    "url": "https://github.com/floh22/native-farsight-module.git"
   },
   "author": "Lars Eble",
   "license": "MIT",

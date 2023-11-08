@@ -1,0 +1,24 @@
+name: Publish to NPM
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "18.x"
+          registry-url: https://registry.npmjs.org/
+      - name: Install dependencies and build 🔧
+        run: npm ci && npm run build
+      - name: Publish package on NPM 📦
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

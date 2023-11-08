@@ -14,7 +14,13 @@
       "include_dirs": [
         "<!@(node -p \"require('node-addon-api').include\")"
       ],
-      'defines': [ 'NAPI_DISABLE_CPP_EXCEPTIONS', 'WIN32_LEAN_AND_MEAN' ],
+      'defines': ['WIN32_LEAN_AND_MEAN'],
+      'msvs_settings': {
+          'VCCLCompilerTool': {
+            'ExceptionHandling': '1',    
+            'AdditionalOptions': ['/EHsc']
+          }
+      }
     }
   ]
 }
