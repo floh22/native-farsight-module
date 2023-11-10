@@ -14,6 +14,7 @@ public:
 
 private:
     static const int MAX_UNITS = 1024;
+    const unsigned int MAX_UINT = std::numeric_limits<unsigned int>::max();
 
     // process info
     HANDLE hProcess = NULL;

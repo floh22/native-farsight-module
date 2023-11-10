@@ -40,7 +40,7 @@ void GameObject::LoadFromMemory(DWORD64 base, HANDLE hProcess, bool deepLoad)
     {
         int nameLength = Memory::ReadDWORD64FromBuffer(buff, Offsets::ObjNameLength);
 
-        if (nameLength <= 0 || nameLength > 100)
+        if (nameLength <= 0 || nameLength > 50)
         {
             name.resize(0);
         }
@@ -59,18 +59,9 @@ void GameObject::LoadFromMemory(DWORD64 base, HANDLE hProcess, bool deepLoad)
 
         int displayNameLength = Memory::ReadDWORD64FromBuffer(buff, Offsets::ObjDisplayNameLength);
 
-        if(displayNameLength == 0) {
-            displayName.resize(0);
-            return;
-        }
-
-        // disregard invalid data (should never happen)
-        if (displayNameLength > 100)
+        if (displayNameLength <= 0 || displayNameLength > 50)
         {
             displayName.resize(0);
-            std::ostringstream oss;
-            oss << "Invalid display name length: " << displayNameLength << " for object " << std::string(name.data()) << " (" << networkId << ")";
-            throw Napi::Error::New(env, oss.str());
             return;
         }
 
