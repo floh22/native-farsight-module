@@ -10,7 +10,6 @@
 #include "windows.h"
 #include "psapi.h"
 #include "Utils.h"
-
 std::set<std::string> Farsight::championNames{};
 
 Farsight::Farsight()
@@ -163,7 +162,9 @@ void Farsight::ReadObjects(Snapshot &snapshot, Napi::Env env)
 
         DWORD64 addr;
         memcpy(&addr, buff + Offsets::ObjectMapNodeObject, sizeof(DWORD64));
-        if (addr == 0)
+        
+        //Im pretty sure netids did not increase to 64bit integers, so anything above 2^31 is invalid
+        if (addr == 0 || netId > MAX_UINT || netId == 0)
             continue;
 
         pointerArray[nrObj] = addr;

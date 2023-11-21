@@ -14,7 +14,7 @@
       "include_dirs": [
         "<!@(node -p \"require('node-addon-api').include\")"
       ],
-      'defines': ['WIN32_LEAN_AND_MEAN'],
+      'defines': ['WIN32_LEAN_AND_MEAN', 'NOMINMAX'],
       'msvs_settings': {
           'VCCLCompilerTool': {
             'ExceptionHandling': '1',    

@@ -1,6 +1,6 @@
 {
   "name": "@floh22/farsight",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "A native library to read League of Legends process memory",
   "main": "index.js",
   "typings": "index.d.ts",
@@ -8,6 +8,7 @@
     "configure": "node-gyp configure",
     "rebuild": "node-gyp rebuild",
     "build": "node-gyp build",
+    "build:dev": "node-gyp build --debug",
     "start": "node index.js"
   },
   "publishConfig": {
