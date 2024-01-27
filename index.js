@@ -7,7 +7,7 @@ var connected = false;
 var autoImportChampions = true;
 var autoImportOffsets = true;
 var gameVersion = [0,0];
-var offsetRepository = "https://api.github.com/repos/floh22/native-farsight-module/contents/offsets?ref=main";
+var offsetRepository = "https://api.github.com/repos/Loadscreengg/native-farsight-module/contents/offsets?ref=main";
 
 
 

@@ -6,8 +6,8 @@
   "typings": "index.d.ts",
   "scripts": {
     "configure": "node-gyp configure",
-    "rebuild": "node-gyp rebuild",
-    "build": "node-gyp build",
+    "rebuild": "node-gyp rebuild --msvs_version=2022",
+    "build": "node-gyp build --msvs_version=2022",
     "build:dev": "node-gyp build --debug",
     "start": "node index.js"
   },
