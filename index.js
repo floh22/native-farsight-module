@@ -1,5 +1,12 @@
 const addon = require('bindings')('farsight');
 
+// Uncomment this code to use axios instead of fetch.
+/*let axios = require("axios")
+let fetch = async (...args) => {
+    let res = await axios.get(...args)
+    return { ok: true, json: () => { return res.data } }
+}*/
+
 var offsetsSet = false;
 var championsSet = false;
 var connected = false;
