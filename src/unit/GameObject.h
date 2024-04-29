@@ -47,7 +47,7 @@ public:
     DWORD64 baseAddress;
 
 protected:
-    static const SIZE_T sizeBuff = 0x4100;
+    static const SIZE_T sizeBuff = 0x5000;
     static const SIZE_T sizeBuffDeep = 0x1000;
 
     static BYTE buff[sizeBuff];
